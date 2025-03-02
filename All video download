@@ -312,3 +312,241 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download videos from various platforms with optimized compression and quality settings. Free online video downloader tool.">
+    <meta name="keywords" content="video downloader, online video converter, video compression, free video tool">
+    <title>All Video Downloader | Free Online Video Tool</title>
+    
+    <!-- SEO-Friendly Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "All Video Downloader",
+        "description": "Professional video downloading tool with compression optimization",
+        "applicationCategory": "Multimedia",
+        "operatingSystem": "Any"
+    }
+    </script>
+
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #f0f2f5;
+        }
+
+        /* Header */
+        .header {
+            background: #ffffff;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Ad Spaces */
+        .ad-unit {
+            background: #fff;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        .download-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="url"], select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+            margin-top: 2rem;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google AdSense Header -->
+    <div id="ad-top" class="ad-unit">
+        <!-- AdSense Code will be inserted here -->
+    </div>
+
+    <header class="header">
+        <h1>All Video Downloader</h1>
+        <p>Download videos from any platform with optimized quality</p>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <form class="download-form" id="downloadForm">
+                <div class="form-group">
+                    <label for="videoUrl">Video URL:</label>
+                    <input type="url" id="videoUrl" required placeholder="Enter video URL here">
+                </div>
+
+                <div class="form-group">
+                    <label for="compression">Compression Level:</label>
+                    <select id="compression">
+                        <option value="low">Low Compression (High Quality)</option>
+                        <option value="medium" selected>Medium Compression</option>
+                        <option value="high">High Compression (Small File Size)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="optimizeImages"> Optimize Thumbnails
+                    </label>
+                </div>
+
+                <button type="submit">Process Video</button>
+            </form>
+
+            <div class="loading" id="loading">
+                <p>Processing video... (This may take a few seconds)</p>
+            </div>
+
+            <div class="results" id="results">
+                <h2>Download Ready!</h2>
+                <p id="fileInfo"></p>
+                <a id="downloadLink" class="button">Download Now</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Ad Section -->
+        <div class="sidebar">
+            <div id="ad-sidebar" class="ad-unit">
+                <!-- Sidebar Ad Content -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // AdSense Integration
+        function loadAds() {
+            // Replace with your AdSense codes
+            const ads = [
+                { id: 'ad-top', code: 'YOUR_TOP_AD_UNIT_ID' },
+                { id: 'ad-sidebar', code: 'YOUR_SIDEBAR_AD_UNIT_ID' }
+            ];
+
+            ads.forEach(ad => {
+                const adSlot = document.getElementById(ad.id);
+                if (adSlot) {
+                    adSlot.innerHTML = `
+                        <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                            data-ad-slot="${ad.code}"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        <\/script>
+                    `;
+                }
+            });
+        }
+
+        // Form Handling
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = document.getElementById('videoUrl').value;
+            const compression = document.getElementById('compression').value;
+            const optimizeImages = document.getElementById('optimizeImages').checked;
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+
+            // Simulate processing delay
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('fileInfo').textContent = 
+                    `File Size: ${calculateFileSize(compression)} | Quality: ${getQualityLevel(compression)}`;
+                document.getElementById('downloadLink').href = '#';
+            }, 2000);
+        });
+
+        function calculateFileSize(compression) {
+            const sizes = { low: '50-100MB', medium: '20-50MB', high: '5-20MB' };
+            return sizes[compression];
+        }
+
+        function getQualityLevel(compression) {
+            const quality = { low: '1080p', medium: '720p', high: '480p' };
+            return quality[compression];
+        }
+
+        // Initialize ads on page load
+        window.onload = loadAds;
+    </script>
+</body>
+</html>
