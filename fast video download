@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download videos in any format with optimized compression. Supports MP4, AVI, MKV, and WebM formats.">
+    <meta name="keywords" content="video download, video converter, online video tool, compress videos">
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Video Download Master - Online Video Download Tool">
+    <meta property="og:description" content="Download and optimize videos with various compression levels. Fast and free online video converter.">
+    
+    <title>Video Download Master - Online Video Tool</title>
+    
+    <!-- Google AdMob Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-5533519829317766/4168657368"
+    crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #1a73e8;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+        }
+
+        .download-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .ad-section {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 8px 0;
+        }
+
+        select {
+            padding: 12px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .result-section {
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .ad-section {
+                order: -1;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Video Download Master</h1>
+            <p>Download & Optimize Videos in Multiple Formats</p>
+        </header>
+
+        <!-- AdMob Top Banner -->
+        <div class="ad-section">
+            <!-- Replace with your ca-app-pub-5533519829317766~8153889472 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-app-pub-5533519829317766/4168657368"
+                data-ad-slot="1234567890"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="main-content">
+            <div class="download-section">
+                <form id="downloadForm">
+                    <div class="form-group">
+                        <label for="videoUrl">Video URL:</label>
+                        <input type="url" id="videoUrl" placeholder="Paste video link here" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compression">Compression Level:</label>
+                        <select id="compression">
+                            <option value="low">Low Compression (High Quality)</option>
+                            <option value="medium" selected>Medium Compression</option>
+                            <option value="high">High Compression (Small Size)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Process Video</button>
+                </form>
+
+                <div class="loading">
+                    <p>Processing video...</p>
+                    <div class="spinner"></div>
+                </div>
+
+                <div class="result-section" id="result">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Sidebar Ad Section -->
+            <div class="ad-section">
+                <!-- Replace with your AdMob Ad Unit ID -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-app-pub-5533519829317766/4168657368"
+                    data-ad-slot="0987654321"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const videoUrl = document.getElementById('videoUrl').value;
+            const compression = document.getElementById('compression').value;
+            
+            if (!videoUrl) {
+                alert('Please enter a valid video URL');
+                return;
+            }
+
+            // Show loading
+            document.querySelector('.loading').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+
+            // Simulate processing
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+                showResult(videoUrl, compression);
+            }, 2000);
+        });
+
+        function showResult(url, compression) {
+            const formats = ['MP4 720p', 'MP4 480p', 'WebM'];
+            const resultHTML = `
+                <h3>Available Formats:</h3>
+                ${formats.map(format => `
+                    <div class="format-option">
+                        <p>${format} - ${getFileSize(compression)}</p>
+                        <button onclick="downloadVideo('${format}')">Download</button>
+                    </div>
+                `).join('')}
+            `;
+
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+
+        function getFileSize(compression) {
+            const sizes = {
+                low: '120-180MB',
+                medium: '60-100MB',
+                high: '20-50MB'
+            };
+            return sizes[compression] || 'Variable Size';
+        }
+
+        function downloadVideo(format) {
+            alert(`Downloading ${format}...`);
+            // Add actual download logic here
+        }
+    </script>
+</body>
+</html>
